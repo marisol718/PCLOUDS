@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PClouds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #a8c0d8;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Borde general morado */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0; left: 0; right: 0;
+            border: 4px solid #6e3ddb;
+            pointer-events: none;
+        }
+
+        /* Menú lateral negro */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100vh;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            gap: 20px;
+        }
+
+        .sidebar .logo {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .logo img {
+            width: 60px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+        }
+
+        .sidebar .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #6e91ec;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .circle:hover {
+            transform: scale(1.2);
+        }
+
+        /* Encabezado de botones morados */
+        .topbar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 60px;
+            width: calc(100% - 80px);
+            background: transparent;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
+            gap: 10px;
+        }
+
+        .topbar .top-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #6e91ec;
+            transition: transform 0.3s ease;
+        }
+
+        .topbar .top-circle:hover {
+            transform: scale(1.2);
+        }
+
+        /* Contenedor principal de galería */
+        .container {
+            margin: 100px auto;
+            max-width: 700px;
+            background-color: #7d95f3;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .gallery {
+            background-color: #dff0fd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            font-size: 40px;
+            color: #4060d5;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo (1).png" alt="Logo PClouds">
+        </div>
+
+        <!-- Primer botón con href -->
+        <a href="informacion_climatica.html">
+            <div class="circle"></div>
+        </a>
+
+        <!-- Otros botones sin acción -->
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Barra superior -->
+    <div class="topbar">
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="gallery">
+            <button class="arrow left" onclick="prevImage()">&#9664;</button>
+            <img id="slider-image" src="https://i.imgur.com/QrKrv5j.png" alt="Paisaje">
+            <button class="arrow right" onclick="nextImage()">&#9654;</button>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            "https://i.imgur.com/QrKrv5j.png",
+            "https://i.imgur.com/W7Np6br.png",
+            "https://i.imgur.com/Ji8aPA4.png"
+        ];
+
+        let index = 0;
+        const imgElement = document.getElementById("slider-image");
+
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            imgElement.src = images[index];
+        }
+
+        function nextImage() {
+            index = (index + 1) % images.length;
+            imgElement.src = images[index];
+        }
+    </script>
+
+</body>
+</html>
