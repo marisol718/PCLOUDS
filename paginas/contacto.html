@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contáctanos - PClouds</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #a8c0d8;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Sidebar lateral */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100vh;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+      gap: 20px;
+      z-index: 1000;
+    }
+
+    .sidebar .logo img {
+      width: 60px;
+      display: block;
+    }
+
+    .sidebar .circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #6e91ec;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar .circle:hover {
+      transform: scale(1.2);
+    }
+
+    /* Barra superior */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 80px;
+      height: 60px;
+      width: calc(100% - 80px);
+      background: transparent;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 20px;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .topbar .top-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #6e91ec;
+      transition: transform 0.3s ease;
+    }
+
+    .topbar .top-circle:hover {
+      transform: scale(1.2);
+    }
+
+    /* Contenedor principal */
+    .container {
+      margin: 100px auto;
+      max-width: 700px;
+      background-color: #7d95f3;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .container h1 {
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input,
+    textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 2px solid #4060d5;
+    }
+
+    button,
+    .btn-inicio {
+      padding: 12px;
+      background-color: #ffffff;
+      color: #003366;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover,
+    .btn-inicio:hover {
+      background-color: #f0f0f0;
+    }
+
+    .btn-inicio {
+      display: inline-block;
+      text-decoration: none;
+      margin-top: 40px;
+    }
+
+    /* Asegura que el contenido no quede detrás de la barra superior */
+    body {
+      padding-top: 60px;
+      padding-left: 80px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 60px;
+      }
+      body {
+        padding-left: 60px;
+      }
+      .topbar {
+        left: 60px;
+        width: calc(100% - 60px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <div class="logo">
+      <a href="nosotros.html">
+        <img src="../imagenes/logo.png" alt="Logo">
+      </a>
+    </div>
+    <a href="#"><div class="circle"></div></a>
+    <a href="#"><div class="circle"></div></a>
+    <a href="#"><div class="circle"></div></a>
+    <a href="#"><div class="circle"></div></a>
+  </div>
+
+  <!-- Barra superior -->
+  <div class="topbar">
+    <div class="top-circle"></div>
+    <div class="top-circle"></div>
+    <div class="top-circle"></div>
+    <div class="top-circle"></div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <h1>Contáctanos</h1>
+    <form action="#" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu correo electrónico" required>
+      <textarea name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+
+    <a class="btn-inicio" href="../index.html">Volver al inicio</a>
+  </div>
+
+</body>
+</html>
