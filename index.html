@@ -13,15 +13,7 @@
         body {
             background-color: #a8c0d8;
             font-family: Arial, sans-serif;
-        }
-
-        /* Borde general morado */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; bottom: 0; left: 0; right: 0;
-            border: 4px solid #6e3ddb;
-            pointer-events: none;
+            position: relative;
         }
 
         /* Menú lateral negro */
@@ -65,7 +57,7 @@
 
         /* Encabezado de botones morados */
         .topbar {
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
             height: 60px;
@@ -76,6 +68,7 @@
             align-items: center;
             padding: 10px 20px;
             gap: 10px;
+            z-index: 10;
         }
 
         .topbar .top-circle {
@@ -137,6 +130,30 @@
         .arrow.right {
             right: 10px;
         }
+
+        /* Botón flotante "Contáctanos" como enlace */
+        .contactanos-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            border: 2px solid #ccc;
+            padding: 15px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contactanos-btn:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -144,18 +161,14 @@
     <!-- Barra lateral -->
     <div class="sidebar">
         <div class="logo">
-            <img src="logo (1).png" alt="Logo PClouds">
+            <a href="Proyecto/nosotros.html">
+                <img src="data:image/png;base64,...tu_imagen_base64..." alt="Logo">
+            </a>
         </div>
-
-        <!-- Primer botón con href -->
-        <a href="informacion_climatica.html">
-            <div class="circle"></div>
-        </a>
-
-        <!-- Otros botones sin acción -->
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
     </div>
 
     <!-- Barra superior -->
@@ -174,6 +187,9 @@
             <button class="arrow right" onclick="nextImage()">&#9654;</button>
         </div>
     </div>
+
+    <!-- Botón flotante "Contáctanos" -->
+    <a href="contacto.html" class="contactanos-btn">Contáctanos</a>
 
     <script>
         const images = [
