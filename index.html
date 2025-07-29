@@ -4,51 +4,25 @@
     <meta charset="UTF-8">
     <title>PClouds</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * {margin:0;padding:0;box-sizing:border-box;}
         body {
-            background-color: #a8c0d8;
+            background: linear-gradient(135deg, #a8c0d8, #ffffff);
             font-family: Arial, sans-serif;
             position: relative;
         }
 
         /* Menú lateral negro */
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 80px;
-            height: 100vh;
-            background-color: #111;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 10px;
-            gap: 20px;
+            position: fixed;top:0;left:0;width:80px;height:100vh;
+            background-color:#111;display:flex;flex-direction:column;
+            align-items:center;padding-top:10px;gap:20px;
         }
-
-        .sidebar .logo {
-            margin-bottom: 10px;
-        }
-
-        .sidebar .logo img {
-            width: 60px;
-        }
-
-        .sidebar a {
-            text-decoration: none;
-        }
-
+        .sidebar .logo {margin-bottom:10px;}
+        .sidebar .logo img {width:60px;}
+        .sidebar a{text-decoration:none;}
         .sidebar .circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #6e91ec;
-            transition: transform 0.3s ease;
+            width:40px;height:40px;border-radius:50%;
+            background-color:#6e91ec;transition:transform 0.3s ease;
         }
 
         .sidebar .circle:hover {
@@ -57,26 +31,14 @@
 
         /* Encabezado de botones morados */
         .topbar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 60px;
-            width: calc(100% - 80px);
-            background: transparent;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px 20px;
-            gap: 10px;
-            z-index: 10;
+            position:fixed;top:0;right:0;height:60px;
+            width:calc(100% - 80px);background:transparent;
+            display:flex;justify-content:flex-end;align-items:center;
+            padding:10px 20px;gap:10px;z-index:10;
         }
-
         .topbar .top-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #6e91ec;
-            transition: transform 0.3s ease;
+            width:30px;height:30px;border-radius:50%;
+            background-color:#6e91ec;transition:transform 0.3s ease;
         }
 
         .topbar .top-circle:hover {
@@ -133,27 +95,67 @@
 
         /* Botón flotante "Contáctanos" como enlace */
         .contactanos-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: white;
-            color: black;
-            border: 2px solid #ccc;
-            padding: 15px 20px;
-            font-size: 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-decoration: none;
-            font-weight: bold;
+            position:fixed;bottom:20px;right:20px;
+            background-color:white;color:black;border:2px solid #ccc;
+            padding:15px 20px;font-size:16px;border-radius:30px;
+            cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.2);
+            transition:all 0.3s ease;z-index:1000;text-decoration:none;font-weight:bold;
         }
+        .contactanos-btn:hover {background-color:#f0f0f0;transform:scale(1.05);}
+        .new-footer {
+            background-color:#111;color:#ccc;padding:40px 20px;
+            position:relative;left:80px;width:calc(100% - 80px);
+            font-size:14px;margin-top:50px;
+        }
+        .reseñas-container {max-width:600px;margin:0 auto;}
+        .reseñas-container h3 {margin-bottom:10px;color:#fff;}
+        .reseñas-container textarea {
+            width:100%;height:80px;border-radius:5px;
+            padding:10px;border:none;resize:none;margin-bottom:10px;
+        }
+        .reseñas-container button {
+            background-color:#6e91ec;color:#fff;border:none;
+            padding:8px 15px;border-radius:5px;cursor:pointer;
+            transition:background 0.3s;
+        }
+        .reseñas-container button:hover {background-color:#4c6edb;}
+        .lista-reseñas {
+            margin-top:20px;background-color:#222;
+            padding:10px;border-radius:5px;max-height:200px;overflow-y:auto;
+        }
+        .reseña {
+            background-color:#333;padding:8px;border-radius:4px;
+            margin-bottom:5px;color:#ccc;
+        }
+        .contenido-principal {min-height:1000px;padding:20px;margin-left:80px;}
+        .footer-info {margin-top:30px;text-align:center;}
+        .footer-info p, .footer-info a {color:#ccc;text-decoration:none;font-size:14px;}
+        .footer-info a:hover {color:#6e91ec;}
 
-        .contactanos-btn:hover {
-            background-color: #f0f0f0;
-            transform: scale(1.05);
+        /* ===== ESTILOS MODAL LOGIN / REGISTRO ===== */
+        #login-modal {
+            position: fixed;top:0;left:0;width:100%;height:100%;
+            background: rgba(0,0,0,0.5);display:flex;
+            justify-content:center;align-items:center;z-index:5000;
         }
+        .login-box {
+            background:white;padding:20px;border-radius:10px;
+            width:300px;text-align:center;
+        }
+        .login-box input {
+            width:100%;padding:8px;margin-bottom:10px;border:1px solid #ccc;border-radius:5px;
+        }
+        .login-box button {
+            background:#6e91ec;color:white;border:none;
+            padding:8px 15px;border-radius:5px;cursor:pointer;width:100%;
+        }
+        .tabs {
+            display:flex;justify-content:space-around;margin-bottom:10px;
+        }
+        .tabs button {
+            background:#ccc;border:none;padding:5px 10px;cursor:pointer;
+        }
+        .tabs button.active {background:#6e91ec;color:white;}
     </style>
 </head>
 <body>
@@ -212,5 +214,59 @@
         }
     </script>
 
+        // Reseñas
+        const listaReseñas=document.getElementById("lista-reseñas");
+        const inputReseña=document.getElementById("nueva-reseña");
+        function agregarReseña(){
+            const texto=inputReseña.value.trim();
+            if(texto!==""){
+                const div=document.createElement("div");
+                div.classList.add("reseña");
+                div.textContent=texto;
+                listaReseñas.appendChild(div);
+                inputReseña.value="";
+            } else alert("Por favor escribe una reseña antes de enviar.");
+        }
+
+        // Login y Registro con localStorage
+        const loginModal=document.getElementById("login-modal");
+        function mostrarLogin(){
+            document.getElementById("login-form").style.display="block";
+            document.getElementById("registro-form").style.display="none";
+            document.getElementById("tab-login").classList.add("active");
+            document.getElementById("tab-registro").classList.remove("active");
+        }
+        function mostrarRegistro(){
+            document.getElementById("login-form").style.display="none";
+            document.getElementById("registro-form").style.display="block";
+            document.getElementById("tab-login").classList.remove("active");
+            document.getElementById("tab-registro").classList.add("active");
+        }
+        function registrarUsuario(){
+            const usuario=document.getElementById("registro-usuario").value.trim();
+            const password=document.getElementById("registro-password").value.trim();
+            if(!usuario||!password){alert("❌ Rellena todos los campos");return;}
+            if(localStorage.getItem(usuario)){
+                alert("❌ El usuario ya existe");
+            } else {
+                localStorage.setItem(usuario,password);
+                alert("✅ Registro exitoso, ahora puedes iniciar sesión");
+                mostrarLogin();
+            }
+        }
+        function iniciarSesion(){
+            const usuario=document.getElementById("login-usuario").value.trim();
+            const password=document.getElementById("login-password").value.trim();
+            if(!usuario||!password){alert("❌ Rellena todos los campos");return;}
+            const passGuardada=localStorage.getItem(usuario);
+            if(passGuardada && passGuardada===password){
+                alert("✅ Bienvenido, "+usuario+"!");
+                loginModal.style.display="none";
+            } else {
+                alert("❌ Usuario o contraseña incorrectos");
+            }
+        }
+        window.onload=function(){loginModal.style.display="flex";}
+    </script>
 </body>
 </html>
