@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>PClouds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #a8c0d8;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        /* Menú lateral negro */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100vh;
+            background-color: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            gap: 20px;
+        }
+
+        .sidebar .logo {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .logo img {
+            width: 60px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+        }
+
+        .sidebar .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #6e91ec;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar .circle:hover {
+            transform: scale(1.2);
+        }
+
+        /* Encabezado de botones morados */
+        .topbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 60px;
+            width: calc(100% - 80px);
+            background: transparent;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .topbar .top-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #6e91ec;
+            transition: transform 0.3s ease;
+        }
+
+        .topbar .top-circle:hover {
+            transform: scale(1.2);
+        }
+
+        /* Contenedor principal de galería */
+        .container {
+            margin: 100px auto;
+            max-width: 700px;
+            background-color: #7d95f3;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .gallery {
+            background-color: #dff0fd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            border: none;
+            font-size: 40px;
+            color: #4060d5;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Botón flotante "Contáctanos" como enlace */
+        .contactanos-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            border: 2px solid #ccc;
+            padding: 15px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contactanos-btn:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <div class="logo">
+            <a href="paginas/nosotros.html">
+             <img src="imagenes/logo.png" alt="Logo">   
+            </a>
+        </div>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
+        <a href="xxxx"><div class="circle"></div></a>
+    </div>
+
+    <!-- Barra superior -->
+    <div class="topbar">
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+        <div class="top-circle"></div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="gallery">
+            <button class="arrow left" onclick="prevImage()">&#9664;</button>
+            <img id="slider-image" src="https://i.imgur.com/QrKrv5j.png" alt="Paisaje">
+            <button class="arrow right" onclick="nextImage()">&#9654;</button>
+        </div>
+    </div>
+
+    <!-- Botón flotante "Contáctanos" -->
+    <a href="contacto.html" class="contactanos-btn">Contáctanos</a>
+
+    <script>
+        const images = [
+            "https://i.imgur.com/QrKrv5j.png",
+            "https://i.imgur.com/W7Np6br.png",
+            "https://i.imgur.com/Ji8aPA4.png"
+        ];
+
+        let index = 0;
+        const imgElement = document.getElementById("slider-image");
+
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            imgElement.src = images[index];
+        }
+
+        function nextImage() {
+            index = (index + 1) % images.length;
+            imgElement.src = images[index];
+        }
+    </script>
+
+</body>
+</html>
