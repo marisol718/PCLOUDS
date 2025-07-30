@@ -297,12 +297,12 @@
             background: #6e91ec;
             color: white;
         }
-
+        
         /* Cambia el tamaño del carrusel */
         #carouselExampleCaptions {
-            width: 800px;
+            width: 500px;
             /* Puedes ajustar este valor */
-            height: 800px;
+            height: 5080px;
             /* Puedes ajustar este valor */
             margin: auto;
         }
@@ -321,11 +321,36 @@
             border-radius: 50%;
             display: block;
         }
+                /* Carrusel de lado a lado, sin chocar con la sidebar */
+        #carouselExampleCaptions {
+            position: relative;
+            left: 80px;
+            width: calc(100vw - 80px);
+            max-width: none;
+            height: 400px;
+            margin: 80px 0 40px 0;
+            border-radius: 0;
+            background: #7d95f3;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        #carouselExampleCaptions .carousel-inner,
+        #carouselExampleCaptions img {
+            height: 400px;
+            border-radius: 0;
+        }
+        @media (max-width: 900px) {
+            #carouselExampleCaptions {
+                height: 220px;
+            }
+            #carouselExampleCaptions .carousel-inner,
+            #carouselExampleCaptions img {
+                height: 220px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <!-- Barra lateral -->
 
     <div class="sidebar">
@@ -349,9 +374,6 @@
                 <img src="imagenes/logo pronostico.PNG" alt="Logo pronostico" />
             </div>
         </a>
-        <a href="#">
-            <div class="circle"></div>
-        </a>
     </div>
 
     <!-- Barra superior  -->
@@ -362,7 +384,6 @@
         <div class="top-circle"></div>
     </div>
     <!--carrusel-->
-
     <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
