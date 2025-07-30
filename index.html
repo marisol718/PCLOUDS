@@ -143,7 +143,6 @@
         <div class="carousel-container">
             <div class="carousel">
                 <button class="arrow left" onclick="prevImage()">&#9664;</button>
-                <img id="carousel-image" src="https://i.imgur.com/QrKrv5j.png" alt="Imagen carrusel">
                 <button class="arrow right" onclick="nextImage()">&#9654;</button>
             </div>
         </div>
@@ -188,17 +187,8 @@
                 <button onclick="registrarUsuario()">Registrar</button>
             </div>
         </div>
-    </div>
-
+    </div> 
     <script>
-        // Carrusel
-        const images = ["","https://i.imgur.com/W7Np6br.png","https://i.imgur.com/Ji8aPA4.png"];
-        let index=0;const imgElement=document.getElementById("carousel-image");
-        function showImage(i){imgElement.src=images[i];}
-        function nextImage(){index=(index+1)%images.length;showImage(index);}
-        function prevImage(){index=(index-1+images.length)%images.length;showImage(index);}
-        setInterval(nextImage,4000);
-
         // Reseñas
         const listaReseñas=document.getElementById("lista-reseñas");
         const inputReseña=document.getElementById("nueva-reseña");
