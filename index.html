@@ -17,6 +17,7 @@
             background: linear-gradient(135deg, #a8c0d8, #ffffff);
             font-family: Arial, sans-serif;
             position: relative;
+            overflow-x: hidden;
         }
 
         .sidebar {
@@ -25,12 +26,14 @@
             left: 0;
             width: 80px;
             height: 100vh;
-            background-color: #111;
+            background: linear-gradient(180deg, #111 0%, #222 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-top: 10px;
             gap: 20px;
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
         }
 
         .sidebar .logo {
@@ -39,6 +42,7 @@
 
         .sidebar .logo img {
             width: 60px;
+            filter: drop-shadow(0 2px 8px rgba(110, 145, 236, 0.5));
         }
 
         .sidebar a {
@@ -50,11 +54,29 @@
             height: 40px;
             border-radius: 50%;
             background-color: #6e91ec;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar .circle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
         }
 
         .sidebar .circle:hover {
             transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(110, 145, 236, 0.8);
+        }
+
+        .sidebar .circle:hover::before {
+            left: 100%;
         }
 
         .topbar {
@@ -85,31 +107,52 @@
             left: 0;
             width: 100%;
             height: 60px;
-            background-color: #111;
+            background: linear-gradient(135deg, #111 0%, #333 100%);
             transform: translateY(-50%);
             z-index: -1;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .topbar .login-btn {
-            background-color: #6e91ec;
+            background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
             color: white;
             border: none;
             padding: 8px 15px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             margin-left: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topbar .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
 
         .topbar .login-btn:hover {
-            background-color: #4c6edb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 145, 236, 0.4);
+        }
+
+        .topbar .login-btn:hover::before {
+            left: 100%;
         }
 
         .main-title {
             text-align: left;
             margin: 80px 0 20px 100px;
             padding: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .main-title h1 {
@@ -122,6 +165,146 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+            }
+            100% {
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+            }
+        }
+
+        /* Sección de características */
+        .features-section {
+            margin: 60px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin-left: 100px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Sección de estadísticas */
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 60px 0 60px 80px;
+            padding: 60px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 10s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100px) translateY(-100px); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .topbar .top-circle {
@@ -189,27 +372,46 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: white;
-            color: black;
-            border: 2px solid #ccc;
+            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+            color: #333;
+            border: 2px solid #6e91ec;
             padding: 15px 20px;
             font-size: 16px;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             z-index: 1000;
             text-decoration: none;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contactanos-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(110, 145, 236, 0.2), transparent);
+            transition: left 0.5s;
         }
 
         .contactanos-btn:hover {
-            background-color: #f0f0f0;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #6e91ec 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 35px rgba(110, 145, 236, 0.3);
+        }
+
+        .contactanos-btn:hover::before {
+            left: 100%;
         }
 
         .new-footer {
-            background-color: #111;
+            background: linear-gradient(135deg, #111 0%, #222 100%);
             color: #ccc;
             padding: 40px 20px;
             position: relative;
@@ -217,6 +419,7 @@
             width: calc(100% - 80px);
             font-size: 14px;
             margin-top: 50px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .reseñas-container {
@@ -326,7 +529,7 @@
             height: 450px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
@@ -399,6 +602,93 @@
             transform: scale(1.2);
         }
 
+        /* Sección CTA */
+        .cta-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 60px 0 60px 80px;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(110, 145, 236, 0.1), transparent);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
         @media (max-width: 768px) {
             .custom-carousel {
                 height: 300px;
@@ -410,12 +700,27 @@
                 width: 45px;
                 height: 45px;
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <div class="sidebar">
         <div class="logo">
             <a href="paginas/nosotros.html">
@@ -458,6 +763,27 @@
         <h1>PClouds</h1>
     </div>
 
+    <!-- Nueva sección de características -->
+    <div class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌡️</div>
+                <h3>Pronóstico Preciso</h3>
+                <p>Obtén predicciones meteorológicas precisas con tecnología de última generación y análisis en tiempo real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Datos Históricos</h3>
+                <p>Accede a información histórica del clima para análisis detallados y patrones meteorológicos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Alertas Tempranas</h3>
+                <p>Recibe notificaciones instantáneas sobre cambios climáticos importantes y condiciones extremas.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="customCarousel" class="carousel slide custom-carousel" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -491,6 +817,40 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
         </button>
+    </div>
+
+    <!-- Nueva sección de estadísticas -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">99.8%</div>
+                <div class="stat-label">Precisión</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Monitoreo</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Usuarios Activos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15min</div>
+                <div class="stat-label">Actualización</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nueva sección CTA -->
+    <div class="cta-section">
+        <div class="cta-content">
+            <h2>¿Listo para el Clima Perfecto?</h2>
+            <p>Únete a miles de usuarios que confían en PClouds para sus pronósticos diarios. Obtén información precisa y en tiempo real.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn primary">Comenzar Ahora</a>
+                <a href="#" class="cta-btn secondary">Saber Más</a>
+            </div>
+        </div>
     </div>
 
     <a href="paginas/contacto.html" class="contactanos-btn">Contáctanos</a>
