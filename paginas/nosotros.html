@@ -19,127 +19,6 @@
       min-height: 100vh;
     }
 
-    /* Elementos flotantes animados */
-    .floating-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .cloud {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 50px;
-      animation: float 20s infinite linear;
-    }
-
-    .cloud:before {
-      content: '';
-      position: absolute;
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 50px;
-    }
-
-    .cloud:after {
-      content: '';
-      position: absolute;
-      background: rgba(255, 255, 255, 0.4);
-      border-radius: 50px;
-    }
-
-    .cloud1 {
-      width: 80px;
-      height: 40px;
-      top: 20%;
-      animation-duration: 30s;
-    }
-
-    .cloud1:before {
-      width: 50px;
-      height: 50px;
-      top: -25px;
-      left: 10px;
-    }
-
-    .cloud1:after {
-      width: 60px;
-      height: 40px;
-      top: -15px;
-      right: 15px;
-    }
-
-    .cloud2 {
-      width: 60px;
-      height: 30px;
-      top: 60%;
-      animation-duration: 25s;
-      animation-delay: -10s;
-    }
-
-    .cloud2:before {
-      width: 40px;
-      height: 40px;
-      top: -20px;
-      left: 8px;
-    }
-
-    .cloud2:after {
-      width: 50px;
-      height: 30px;
-      top: -10px;
-      right: 12px;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateX(-100px);
-      }
-      100% {
-        transform: translateX(calc(100vw + 100px));
-      }
-    }
-
-    /* Partículas flotantes */
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(110, 145, 236, 0.6);
-      border-radius: 50%;
-      animation: particleFloat 15s infinite linear;
-    }
-
-    @keyframes particleFloat {
-      0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100px) translateX(50px);
-        opacity: 0;
-      }
-    }
-
     .sidebar {
       position: fixed;
       top: 0;
@@ -390,19 +269,6 @@
     .icon {
       font-size: 50px;
       margin-bottom: 20px;
-      animation: bounce 2s ease-in-out infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
     }
 
     .title {
@@ -544,15 +410,6 @@
   </style>
 </head>
 <body>
-  <!-- Elementos flotantes animados -->
-  <div class="floating-elements">
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-  </div>
-
-  <!-- Partículas flotantes -->
-  <div class="particles" id="particles"></div>
-
   <div class="sidebar">
     <div class="logo">
       <a href="../index.html">
@@ -561,17 +418,17 @@
     </div>
     <a href="#">
       <div class="circle">
-        <img src="../imagenes/logo historial del clima.png" alt="Logo historial del clima" />
+        <img src="/imagenes/Historial.png" alt="Logo historial del clima" />
       </div>
     </a>
     <a href="#">
       <div class="circle">
-        <img src="../imagenes/logo informacion del clima.png" alt="Logo informacion del clima" />
+        <img src="/imagenes/Pronostico.png" alt="Logo pronostico del clima" />
       </div>
     </a>
     <a href="#">
       <div class="circle">
-        <img src="../imagenes/logo pronostico.PNG" alt="Logo pronostico" />
+        <img src="/imagenes/Informacion.png" alt="Logo informacion del clima" />
       </div>
     </a>
   </div>
@@ -579,13 +436,13 @@
   <div class="topbar">
     <div class="horizontal-line"></div>
     <a href="https://www.facebook.com/profile.php?id=61578839614625" target="_blank">
-      <img src="https://www.facebook.com/images/icons/FBLogo_Blueprint.png" alt="Logo" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+      <img src="/imagenes/facebook.png" alt="Logo" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
     </a>
     <a href="https://www.instagram.com/pcloudsieru/" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+      <img src="/imagenes/Instagram.png" alt="Instagram" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
     </a>
     <a href="https://x.com/PcloudsIeru" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+      <img src="/imagenes/X.png" alt="Twitter" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
     </a>
     <div class="vertical-line"></div>
     <button class="login-btn" onclick="">Iniciar Sesión</button>
@@ -655,24 +512,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    // Script para generar partículas
-    function createParticles() {
-      const particles = document.getElementById('particles');
-      
-      for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-        particles.appendChild(particle);
-      }
-    }
-
-    // Inicializar partículas cuando cargue la página
-    document.addEventListener('DOMContentLoaded', createParticles);
-  </script>
 </body>
 </html>
