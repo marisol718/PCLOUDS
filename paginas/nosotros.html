@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misión, Visión y Política - MeteoSkur</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to top, #a8c0d8, #ffffff);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .custom-btn {
+      background-color: #f9fafa;
+      color: rgb(0, 0, 0);
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 22px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .custom-btn:hover {
+      background-color: #004d40;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      width: 250px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card-front {
+      background: #ffffff;
+    }
+
+    .card-back {
+      background: #77d3df;
+      transform: rotateY(180deg);
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .text {
+      text-align: center;
+    }
+
+    .bottom-button {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<header class="mb-4">
+      <h1 class="text-center">Bienvenidos, esto somos nosotros</h1>
+    </header>
+  <div class="container">
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="text">
+            <div class="icon">☀️</div>
+            <div class="title">Misión</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="text">
+            Proveer información climática precisa y actualizada para que las personas tomen decisiones seguras cada día.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="text">
+            <div class="icon">🌧️</div>
+            <div class="title">Visión</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="text">
+            Ser la plataforma líder en predicción meteorológica confiable para Colombia y Latinoamérica.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="text">
+            <div class="icon">⚖️</div>
+            <div class="title">Política</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="text">
+            Compromiso con la veracidad, ética informativa, y el respeto por el medio ambiente y el servicio público.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Botón de Inicio centrado debajo de las tarjetas -->
+  <div class="bottom-button">
+    <a href="../index.html" class="custom-btn">Inicio</a>
+  </div>
+</body>
+</html>
