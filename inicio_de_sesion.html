@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión - PClouds</title>
+  <link rel="stylesheet" href="tu-estilo.css"> <!-- Puedes enlazar tu CSS principal aquí si lo separas -->
+  <style>
+    body {
+      background: linear-gradient(135deg, #a8c0d8, #ffffff);
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100vh;
+      background: linear-gradient(180deg, #111 0%, #222 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+      gap: 20px;
+      box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar .logo img {
+      width: 60px;
+      filter: drop-shadow(0 2px 8px rgba(110, 145, 236, 0.5));
+    }
+
+    .sidebar .circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #6e91ec;
+      overflow: hidden;
+    }
+
+    .sidebar .circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 60px;
+      width: calc(100% - 80px);
+      background: linear-gradient(135deg, #111 0%, #333 100%);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .topbar a img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .login-container {
+      margin-left: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .login-box button {
+      background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .login-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(110, 145, 236, 0.4);
+    }
+
+    .login-box p {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .login-box p a {
+      color: #6e91ec;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .topbar {
+        width: 100%;
+      }
+
+      .login-container {
+        margin-left: 0;
+        padding: 80px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../imagenes/logo.png" alt="Logo" />
+      </a>
+    </div>
+    <a href="#"><div class="circle"><img src="/imagenes/Historial.png" alt="Historial"/></div></a>
+    <a href="#"><div class="circle"><img src="/imagenes/Pronostico.png" alt="Pronóstico"/></div></a>
+    <a href="#"><div class="circle"><img src="/imagenes/Informacion.png" alt="Información"/></div></a>
+  </div>
+
+  <div class="topbar">
+    <a href="https://www.facebook.com/profile.php?id=61578839614625" target="_blank"><img src="/imagenes/facebook.png" alt="Facebook"/></a>
+    <a href="https://www.instagram.com/pcloudsieru/" target="_blank"><img src="/imagenes/Instagram.png" alt="Instagram"/></a>
+    <a href="https://x.com/PcloudsIeru" target="_blank"><img src="/imagenes/X.png" alt="X"/></a>
+  </div>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Iniciar Sesión</h2>
+      <form action="#" method="POST">
+        <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+        <input type="password" name="contrasena" placeholder="Contraseña" required />
+        <button type="submit">Ingresar</button>
+      </form>
+      <p>¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
+    </div>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>
