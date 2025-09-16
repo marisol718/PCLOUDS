@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    const res = await fetch("http://localhost/proyecto_pia/backend/login.php", {
+    const res = await fetch("http://localhost/proyecto_pia/PCLOUDS/backend/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
@@ -17,6 +17,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     document.getElementById("mensaje").innerText = data.message;
 
     if (data.success) {
+      window.location.href = "admin.html";
       document.getElementById("mensaje").style.color = "green";
     } else {
       document.getElementById("mensaje").style.color = "red";
