@@ -1,0 +1,161 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    background: linear-gradient(135deg, #a8c0d8, #ffffff); 
+    font-family: Arial, sans-serif; 
+}
+
+.sidebar {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 80px; 
+    height: 100vh;
+    background: linear-gradient(180deg, #111 0%, #222 100%);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding-top: 10px; 
+    gap: 20px; 
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3); 
+    z-index: 100;
+}
+
+.sidebar .logo img { 
+    width: 60px; 
+}
+
+.sidebar .circle { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    background-color: #6e91ec; 
+}
+
+.sidebar .circle img { 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%; 
+}
+
+.topbar {
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    height: 60px; 
+    width: calc(100% - 80px);
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    padding: 10px 20px; 
+    gap: 10px; 
+    z-index: 10;
+}
+
+.topbar .horizontal-line {
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    width: 100%; 
+    height: 60px;
+    background: linear-gradient(135deg, #111 0%, #333 100%); 
+    transform: translateY(-50%); 
+    z-index: -1;
+}
+
+.topbar .login-btn {
+    background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
+    color: white; 
+    border: none; 
+    padding: 8px 15px; 
+    border-radius: 20px;
+}
+
+.main-content { 
+    margin-left: 80px; 
+    padding: 80px 20px; 
+}
+
+.page-title h1 {
+    font-size: 3rem; 
+    text-align: center; 
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reseñas-container {
+    max-width: 800px; 
+    margin: 0 auto; 
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px; 
+    padding: 40px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+    margin-bottom: 40px; 
+    padding: 30px; 
+    background: rgba(110, 145, 236, 0.1);
+    border-radius: 15px; 
+    text-align: center;
+}
+
+.btn-enviar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white; 
+    border: none; 
+    padding: 12px 30px; 
+    border-radius: 25px;
+    font-weight: bold; 
+    cursor: pointer; 
+    margin-top: 15px;
+}
+
+.lista-reseñas {
+    max-height: 400px; 
+    overflow-y: auto; 
+    background: #f8f9fa;
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+.reseña {
+    background: white; 
+    padding: 15px; 
+    border-radius: 10px; 
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    border-left: 4px solid #6e91ec;
+}
+
+.reseña-nombre { 
+    font-weight: bold; 
+    color: #333; 
+    margin-bottom: 8px; 
+}
+
+.reseña-fecha { 
+    color: #999; 
+    font-size: 12px; 
+    text-align: right; 
+    margin-top: 10px; 
+}
+
+.volver-btn {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px;
+    background: #6e91ec; 
+    color: white; 
+    padding: 15px 20px;
+    border-radius: 30px; 
+    text-decoration: none; 
+    font-weight: bold;
+}
