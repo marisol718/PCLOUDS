@@ -1,11 +1,10 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
-
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 require_once "db.php";
 
-// Solo mostrar reseñas visibles
-$sql = "SELECT * FROM reviews WHERE visible = 1 ORDER BY created_at DESC";
+$sql = "SELECT * FROM reviews ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
 $resenas = [];

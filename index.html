@@ -678,8 +678,8 @@
         <div class="mb-3 row " style="width: 700px;">
             <input type="text" class="form-control mb-3" id="name" placeholder="Nombre" />
             <textarea id="contenido" class="mb-3" placeholder="Escribe tu opinión..."></textarea>
-            <button class="btn btn-primary" onclick="agregarReseña()">Enviar</button>
-            <div class="lista-reseñas" id="lista-reseñas"></div>
+            <button class="btn btn-primary" onclick="agregarResena()">Enviar</button>
+            <div class="lista-resenas" id="lista-reseñas"></div>
         </div>
         <div class="footer-info">
             <p><strong>Teléfono:</strong> +57 300 123 4567</p>
@@ -695,20 +695,20 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script>
-        function agregarReseña() {
-            const textarea = document.getElementById('nueva-reseña');
-            const listaReseñas = document.getElementById('lista-reseñas');
+        function agregarResena() {
+            const textarea = document.getElementById('contenido');
+            const listaResenas = document.getElementById('lista-resenas');
 
             if (textarea.value.trim() !== '') {
-                const reseña = document.createElement('div');
-                reseña.className = 'reseña';
-                reseña.textContent = textarea.value;
+                const resena = document.createElement('div');
+                resena.className = 'reseña';
+                resena.textContent = textarea.value;
 
-                listaReseñas.appendChild(reseña);
+                listaResenas.appendChild(resena);
                 textarea.value = '';
 
                 // Scroll al final de la lista
-                listaReseñas.scrollTop = listaReseñas.scrollHeight;
+                listaResenas.scrollTop = listaResenas.scrollHeight;
             }
         }
     </script>
