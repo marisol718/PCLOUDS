@@ -678,8 +678,8 @@
         <div class="mb-3 row " style="width: 700px;">
             <input type="text" class="form-control mb-3" id="name" placeholder="Nombre" />
             <textarea id="contenido" class="mb-3" placeholder="Escribe tu opinión..."></textarea>
-            <button class="btn btn-primary" onclick="agregarReseña()">Enviar</button>
-            <div class="lista-reseñas" id="lista-reseñas"></div>
+            <button class="btn btn-primary" onclick="agregarResena()">Enviar</button>
+            <div class="lista-resenas" id="lista-reseñas"></div>
         </div>
         <div class="footer-info">
             <p><strong>Teléfono:</strong> +57 300 123 4567</p>
@@ -695,9 +695,9 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script>
-        function agregarReseña() {
-            const textarea = document.getElementById('nueva-reseña');
-            const listaReseñas = document.getElementById('lista-reseñas');
+        function agregarResena() {
+            const textarea = document.getElementById('contenido');
+            const listaReseñas = document.getElementById('lista-resenas');
 
             if (textarea.value.trim() !== '') {
                 const reseña = document.createElement('div');
