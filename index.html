@@ -149,38 +149,16 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .topbar .login-btn {
-            background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-            position: relative;
-            overflow: hidden;
+        .topbar .top-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #6e91ec;
+            transition: transform 0.3s ease;
         }
 
-        .topbar .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .topbar .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(110, 145, 236, 0.4);
-        }
-
-        .topbar .login-btn:hover::before {
-            left: 100%;
+        .topbar .top-circle:hover {
+            transform: scale(1.2);
         }
 
         .main-title {
@@ -213,6 +191,26 @@
             100% {
                 filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
             }
+        }
+
+        /* Estilos para el carrusel */
+        #carouselExampleControls {
+            margin-left: calc(80px + 2cm);
+            margin-right: 2cm;
+            margin-top: 20px;
+        }
+
+        .carousel-inner {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #f0f0f0;
         }
 
         /* Sección de características */
@@ -281,18 +279,6 @@
             line-height: 1.6;
         }
 
-        .topbar .top-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #6e91ec;
-            transition: transform 0.3s ease;
-        }
-
-        .topbar .top-circle:hover {
-            transform: scale(1.2);
-        }
-
         .contactanos-btn {
             position: fixed;
             bottom: 20px;
@@ -309,7 +295,6 @@
             z-index: 1000;
             text-decoration: none;
             font-weight: bold;
-            position: relative;
             overflow: hidden;
         }
 
@@ -322,6 +307,30 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(110, 145, 236, 0.2), transparent);
             transition: left 0.5s;
+        }
+
+        .mensaje-reseñas {
+            position: fixed;
+            bottom: 30px;
+            right: 180px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            font-size: 14px;
+            max-width: 250px;
+        }
+
+        .mensaje-reseñas::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 10px solid transparent;
+            border-left-color: rgba(255, 255, 255, 0.95);
         }
 
         .contactanos-btn:hover {
@@ -554,6 +563,10 @@
             .tooltip {
                 display: none;
             }
+
+            .carousel-item img {
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -599,12 +612,6 @@
             <img src="/imagenes/X.png" alt="Twitter"
                 style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
         </a>
-        <div class="vertical-line"></div>
-        <button class="login-btn">
-            <a href="/paginas/inicio_de_sesion.html" class="cta-btn">
-                Iniciar Sesión
-            </a></button>
-
     </div>
 
     <div class="main-title">
@@ -613,13 +620,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="imagenes/Informacion.png" class="d-block w-100" alt="...">
+                <img src="imagenes/Lluvia.jpg" class="d-block w-100" alt="Imagen Lluvia">
             </div>
             <div class="carousel-item">
-                <img src="imagenes/logo.png" class="d-block w-100" alt="...">
+                <img src="imagenes/Soleado.jpg" class="d-block w-100" alt="Imagen Soleado">
             </div>
             <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="imagenes/Relampagos.jpg" class="d-block w-100" alt="Imagen Relampagos">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -669,18 +676,13 @@
         </div>
     </div>
 
-    <a href="paginas/contacto.html" class="contactanos-btn">Contáctanos</a>
+    <div class="mensaje-reseñas">
+        ¿Quieres comunicarte con nosotros? Déjanos tu opinión
+    </div>
+    <a href="paginas/resenas.html" class="contactanos-btn">Reseñas</a>
 
     <footer class="new-footer" style="display: flex; flex-direction: column; align-items: center;">
-        <div class="reseñas-container">
-            <h3>Deja tu reseña</h3>
-        </div>
-        <div class="mb-3 row " style="width: 700px;">
-            <input type="text" class="form-control mb-3" id="name" placeholder="Nombre" />
-            <textarea id="contenido" class="mb-3" placeholder="Escribe tu opinión..."></textarea>
-            <button class="btn btn-primary" onclick="agregarResena()">Enviar</button>
-            <div class="lista-resenas" id="lista-reseñas"></div>
-        </div>
+        
         <div class="footer-info">
             <p><strong>Teléfono:</strong> +57 300 123 4567</p>
             <p><strong>Email:</strong> pcloudsieru@gmail.com</p>
@@ -694,25 +696,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script>
-        function agregarResena() {
-            const textarea = document.getElementById('contenido');
-            const listaResenas = document.getElementById('lista-resenas');
-
-            if (textarea.value.trim() !== '') {
-                const resena = document.createElement('div');
-                resena.className = 'reseña';
-                resena.textContent = textarea.value;
-
-                listaResenas.appendChild(resena);
-                textarea.value = '';
-
-                // Scroll al final de la lista
-                listaResenas.scrollTop = listaResenas.scrollHeight;
-            }
-        }
-    </script>
-
 </body>
 
 </html>
