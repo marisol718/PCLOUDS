@@ -17,7 +17,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     document.getElementById("mensaje").innerText = data.message;
 
     if (data.success) {
-      window.location.href = "admin.html";
+      window.location.href = "admin2.html";
       document.getElementById("mensaje").style.color = "green";
     } else {
       document.getElementById("mensaje").style.color = "red";
