@@ -2,7 +2,7 @@
 $host = "Localhost";
 $user = "root";
 $pass = "";
-$dbname = "pia";
+$dbname = "pclouds";
 
 $conn = new mysqli($host, $user, $pass, $dbname, 3306);
 if ($conn->connect_error) {
