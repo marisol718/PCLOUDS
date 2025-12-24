@@ -1,0 +1,532 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #a8c0d8, #ffffff);
+  font-family: Arial, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100vh;
+  background: linear-gradient(180deg, #111 0%, #222 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  gap: 20px;
+  box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar .logo {
+  margin-bottom: 10px;
+}
+
+.sidebar .logo img {
+  width: 60px;
+  filter: drop-shadow(0 2px 8px rgba(110, 145, 236, 0.5));
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.sidebar .circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6e91ec;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar .circle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.sidebar .circle:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(110, 145, 236, 0.8);
+}
+
+.sidebar .circle:hover::before {
+  left: 100%;
+}
+
+.sidebar .circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  right: 0;
+  height: 60px;
+  width: calc(100% - 80px);
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.topbar .vertical-line {
+  width: 2px;
+  height: 30px;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.topbar .horizontal-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(135deg, #111 0%, #333 100%);
+  transform: translateY(-50%);
+  z-index: -1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.topbar .login-btn {
+  background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.topbar .login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.topbar .login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(110, 145, 236, 0.4);
+}
+
+.topbar .login-btn:hover::before {
+  left: 100%;
+}
+
+/* Contenedor del Weather - FIJO A LA DERECHA */
+.container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 420px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+/* Scrollbar personalizado para el contenedor del clima */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.container h1 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group input::placeholder {
+  color: #999;
+}
+
+#getWeatherBtn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#getWeatherBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+#getWeatherBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+#getWeatherBtn:hover::before {
+  left: 100%;
+}
+
+#getWeatherBtn:active {
+  transform: translateY(0);
+}
+
+#weather-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#weather-info:empty {
+  display: none;
+}
+
+#weather-info h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+#weather-info p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 6px 0;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+#weather-info p strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Contenido principal - CON ESPACIO PARA EL CUADRO DEL CLIMA */
+.main-content {
+  margin-left: 80px;
+  margin-right: 460px;
+  padding: 80px 30px 40px 30px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.header p {
+  font-size: 1.3rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@keyframes titleGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+  }
+}
+
+/* Iframe del mapa */
+iframe {
+  display: block;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+}
+
+.bottom-section {
+  text-align: center;
+  margin-top: 60px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(110, 145, 236, 0.1), transparent);
+  animation: rotate 15s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.bottom-content {
+  position: relative;
+  z-index: 2;
+}
+
+.bottom-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bottom-section p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.custom-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.custom-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.custom-btn:hover::before {
+  left: 100%;
+}
+
+/* Media Queries - Responsividad */
+@media (max-width: 1400px) {
+  .container {
+    width: 380px;
+  }
+  
+  .main-content {
+    margin-right: 420px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 350px;
+    padding: 20px;
+  }
+  
+  .main-content {
+    margin-right: 390px;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    position: static;
+    margin: 40px auto;
+    max-width: 500px;
+    width: calc(100% - 40px);
+  }
+  
+  .main-content {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 100px 20px 40px 20px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .topbar {
+    width: 100%;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header p {
+    font-size: 1.1rem;
+  }
+
+  .container {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    padding: 25px;
+    margin: 20px auto;
+    max-height: none;
+  }
+
+  .container h1 {
+    font-size: 1.5rem;
+  }
+
+  iframe {
+    width: 100%;
+    height: 300px;
+  }
+
+  .bottom-section {
+    padding: 30px 20px;
+  }
+
+  .bottom-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .bottom-section p {
+    font-size: 1rem;
+  }
+}
