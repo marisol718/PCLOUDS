@@ -6,550 +6,7 @@
     <title>PClouds</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #a8c0d8, #ffffff);
-            font-family: Arial, sans-serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 80px;
-            height: 100vh;
-            background: linear-gradient(180deg, #111 0%, #222 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 10px;
-            gap: 20px;
-            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
-
-        .sidebar .logo {
-            margin-bottom: 10px;
-        }
-
-        .sidebar .logo img {
-            width: 60px;
-            filter: drop-shadow(0 2px 8px rgba(110, 145, 236, 0.5));
-        }
-
-        .sidebar a {
-            text-decoration: none;
-            position: relative;
-        }
-
-        .sidebar .circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #6e91ec;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar .circle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .sidebar .circle:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 20px rgba(110, 145, 236, 0.8);
-        }
-
-        .sidebar .circle:hover::before {
-            left: 100%;
-        }
-
-        /* Estilos para los tooltips */
-        .tooltip {
-            position: absolute;
-            left: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            pointer-events: none;
-        }
-
-        .tooltip::before {
-            content: '';
-            position: absolute;
-            right: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            border: 6px solid transparent;
-            border-right-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .sidebar a:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-            left: 65px;
-        }
-
-        .topbar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 60px;
-            width: calc(100% - 80px);
-            background: transparent;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px 20px;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .topbar .vertical-line {
-            width: 2px;
-            height: 30px;
-            background-color: white;
-            margin-left: 10px;
-        }
-
-        .topbar .horizontal-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: linear-gradient(135deg, #111 0%, #333 100%);
-            transform: translateY(-50%);
-            z-index: -1;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .topbar .login-btn {
-            background: linear-gradient(135deg, #6e91ec 0%, #4c6edb 100%);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            margin-left: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .topbar .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .topbar .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(110, 145, 236, 0.4);
-        }
-
-        .topbar .login-btn:hover::before {
-            left: 100%;
-        }
-
-        .main-title {
-            text-align: left;
-            margin: 80px 0 20px 100px;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .main-title h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #667eea;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% {
-                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
-            }
-            100% {
-                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
-            }
-        }
-
-        /* Sección de características */
-        .features-section {
-            margin: 60px auto;
-            max-width: 1200px;
-            padding: 0 20px;
-            margin-left: 100px;
-            z-index: 10;
-            position: relative;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: white;
-        }
-
-        .feature-card h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .topbar .top-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #6e91ec;
-            transition: transform 0.3s ease;
-        }
-
-        .topbar .top-circle:hover {
-            transform: scale(1.2);
-        }
-
-        .contactanos-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
-            color: #333;
-            border: 2px solid #6e91ec;
-            padding: 15px 20px;
-            font-size: 16px;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-decoration: none;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contactanos-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(110, 145, 236, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .contactanos-btn:hover {
-            background: linear-gradient(135deg, #6e91ec 0%, #764ba2 100%);
-            color: white;
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 12px 35px rgba(110, 145, 236, 0.3);
-        }
-
-        .contactanos-btn:hover::before {
-            left: 100%;
-        }
-
-        .new-footer {
-            background: #000000;
-            color: #ccc;
-            padding: 40px 20px;
-            position: relative;
-            left: 80px;
-            width: calc(100% - 80px);
-            font-size: 14px;
-            margin-top: 50px;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .reseñas-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .reseñas-container h3 {
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .reseñas-container textarea {
-            width: 100%;
-            height: 80px;
-            border-radius: 5px;
-            padding: 10px;
-            border: none;
-            resize: none;
-            margin-bottom: 10px;
-        }
-
-        .reseñas-container button {
-            background-color: #6e91ec;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .reseñas-container button:hover {
-            background-color: #4c6edb;
-        }
-
-        .lista-reseñas {
-            margin-top: 20px;
-            background-color: #222;
-            padding: 10px;
-            border-radius: 5px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .reseña {
-            background-color: #333;
-            padding: 8px;
-            border-radius: 4px;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-
-        .contenido-principal {
-            min-height: 1000px;
-            padding: 20px;
-            margin-left: 80px;
-        }
-
-        .footer-info {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .footer-info p,
-        .footer-info a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .footer-info a:hover {
-            color: #6e91ec;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 10px;
-        }
-
-        .tabs button {
-            background: #ccc;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .tabs button.active {
-            background: #6e91ec;
-            color: white;
-        }
-        
-        .sidebar .circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-        }
-
-        /* Sección CTA */
-        .cta-section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 60px 0 60px 80px;
-            padding: 60px 20px;
-            text-align: center;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(110, 145, 236, 0.1), transparent);
-            animation: rotate 15s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-btn.primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .cta-btn.secondary {
-            background: transparent;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .main-title h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-section h2 {
-                font-size: 2rem;
-            }
-
-            .tooltip {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="paginas/css/index.css">
 </head>
 
 <body>
@@ -573,7 +30,9 @@
         </a>
         <a href="#">
             <div class="circle">
+                <a href="paginas/informacion.html">
                 <img src="imagenes/Informacion.png" alt="Logo información del clima" />
+                </a>
             </div>
             <div class="tooltip">Información Meteorológica</div>
         </a>
@@ -582,29 +41,55 @@
     <div class="topbar">
         <div class="horizontal-line"></div>
         <a href="https://www.facebook.com/profile.php?id=61578839614625" target="_blank">
-            <img src="/imagenes/facebook.png" alt="Logo" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+            <img src="/imagenes/facebook.png" alt="Logo"
+                style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
         </a>
         <a href="https://www.instagram.com/pcloudsieru/" target="_blank">
-            <img src="/imagenes/Instagram.png" alt="Instagram" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+            <img src="/imagenes/Instagram.png" alt="Instagram"
+                style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
         </a>
         <a href="https://x.com/PcloudsIeru" target="_blank">
-            <img src="/imagenes/X.png" alt="Twitter" style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
+            <img src="/imagenes/X.png" alt="Twitter"
+                style="width:30px;height:30px;border-radius:50%;object-fit:cover;vertical-align:middle;cursor:pointer;">
         </a>
-        <div class="vertical-line"></div>
-        <button class="login-btn" onclick="">Iniciar Sesión</button>
     </div>
 
     <div class="main-title">
         <h1>PClouds</h1>
     </div>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="imagenes/Lluvia.jpg" class="d-block w-100" alt="Imagen Lluvia">
+            </div>
+            <div class="carousel-item">
+                <img src="imagenes/Soleado.jpg" class="d-block w-100" alt="Imagen Soleado">
+            </div>
+            <div class="carousel-item">
+                <img src="imagenes/Relampagos.jpg" class="d-block w-100" alt="Imagen Relampagos">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
     <!-- Nueva sección de características -->
+        <center style="padding-left: 80px;"></center>
     <div class="features-section">
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🌡️</div>
                 <h3>Pronóstico Preciso</h3>
-                <p>Obtén predicciones meteorológicas precisas con tecnología de última generación y análisis en tiempo real.</p>
+                <p>Obtén predicciones meteorológicas precisas con tecnología de última generación y análisis en tiempo
+                    real.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
@@ -623,53 +108,35 @@
     <div class="cta-section">
         <div class="cta-content">
             <h2>¿Listo para el Clima Perfecto?</h2>
-            <p>Únete a miles de usuarios que confían en PClouds para sus pronósticos diarios. Obtén información precisa y en tiempo real.</p>
+            <p>Únete a miles de usuarios que confían en PClouds para sus pronósticos diarios. Obtén información precisa
+                y en tiempo real.</p>
             <div class="cta-buttons">
-                <a href="#" class="cta-btn primary">Comenzar Ahora</a>
+                <a href="/paginas/informacion.html" class="cta-btn primary">Comenzar Ahora</a>
                 <a href="/paginas/nosotros.html" class="cta-btn secondary">Saber Más</a>
             </div>
         </div>
     </div>
 
-    <a href="paginas/contacto.html" class="contactanos-btn">Contáctanos</a>
+    <div class="mensaje-reseñas">
+        ¿Quieres comunicarte con nosotros? Déjanos tu opinión
+    </div>
+    <a href="paginas/resenas.html" class="contactanos-btn">Reseñas</a>
 
-    <footer class="new-footer">
-        <div class="reseñas-container">
-            <h3>Deja tu reseña</h3>
-            <textarea id="nueva-reseña" placeholder="Escribe tu opinión..."></textarea>
-            <button onclick="agregarReseña()">Enviar</button>
-            <div class="lista-reseñas" id="lista-reseñas"></div>
-        </div>
+    <footer class="new-footer" style="display: flex; flex-direction: column; align-items: center;">
         <div class="footer-info">
             <p><strong>Teléfono:</strong> +57 300 123 4567</p>
             <p><strong>Email:</strong> pcloudsieru@gmail.com</p>
-            <p><strong>Síguenos:</strong> 
-                <a href="https://www.facebook.com/profile.php?id=61578839614625" target="_blank">Facebook</a> | 
-                <a href="https://www.instagram.com/pcloudsieru/" target="_blank">Instagram</a> | 
+            <p><strong>Síguenos:</strong>
+                <a href="https://www.facebook.com/profile.php?id=61578839614625" target="_blank">Facebook</a> |
+                <a href="https://www.instagram.com/pcloudsieru/" target="_blank">Instagram</a> |
                 <a href="https://x.com/PcloudsIeru" target="_blank">Twitter</a>
             </p>
         </div>
     </footer>
-
-    <script>
-        function agregarReseña() {
-            const textarea = document.getElementById('nueva-reseña');
-            const listaReseñas = document.getElementById('lista-reseñas');
-            
-            if (textarea.value.trim() !== '') {
-                const reseña = document.createElement('div');
-                reseña.className = 'reseña';
-                reseña.textContent = textarea.value;
-                
-                listaReseñas.appendChild(reseña);
-                textarea.value = '';
-                
-                // Scroll al final de la lista
-                listaReseñas.scrollTop = listaReseñas.scrollHeight;
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
 
-</html> 
+</html>
